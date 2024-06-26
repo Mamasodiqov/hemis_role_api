@@ -34,12 +34,12 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include('role.urls')),
+    path('hemis_api_role/admin/', admin.site.urls),
+    path('hemis_api_role/api/v1/', include('role.urls')),
 
     # swagger
-    path('swagger/', schema_view.with_ui(
+    path('hemis_api_role/swagger/', schema_view.with_ui(
         'swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui(
+    path('hemis_api_role/redoc/', schema_view.with_ui(
              'redoc', cache_timeout=0), name='schema-redoc')
 ]
