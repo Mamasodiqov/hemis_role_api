@@ -3,6 +3,25 @@
 import django.db.models.deletion
 import uuid
 from django.db import migrations, models
+from django.contrib.auth import get_user_model
+import random
+import string
+
+
+def create_superuser(apps, schema_editor):
+    User = get_user_model()
+    # Superuser uchun login va parolni aniqlaymiz
+    username = 'admin'
+    password = ''.join(random.choices(string.ascii_letters + string.digits, k=12))
+    email = 'admin@example.com'
+
+    # Superuser yaratamiz
+    User.objects.create_superuser(username=username, email=email, password=password)
+
+    # Parolni faylga yozamiz
+    with open('password.txt', 'w') as f:
+        f.write(f'Username: {username}\n')
+        f.write(f'Password: {password}\n')
 
 
 class Migration(migrations.Migration):
@@ -44,4 +63,5 @@ class Migration(migrations.Migration):
                 ('role', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='nav_child', to='role.role')),
             ],
         ),
+        migrations.RunPython(create_superuser),
     ]
