@@ -42,7 +42,4 @@ urlpatterns = [
         'swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('hemis_api_role/redoc/', schema_view.with_ui(
              'redoc', cache_timeout=0), name='schema-redoc')
-
-# Redirect the root of hemis_api_role to the admin
-    path('hemis_api_role/', admin.site.urls),
 ]
