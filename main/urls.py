@@ -34,7 +34,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('hemis_api_role/admin/', admin.site.urls),
+    path('hemis_api_role/', admin.site.urls),
     path('hemis_api_role/api/v1/', include('role.urls')),
 
     # swagger
