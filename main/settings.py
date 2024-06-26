@@ -36,6 +36,7 @@ DEBUG = env.bool('DEBUG')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +54,11 @@ INSTALLED_APPS = [
     # local
     'role',
 ]
+
+# CORS sozlamalari
+CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=False)
+# yoki aniq domendan ruxsat berish uchun
+# CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[])
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
