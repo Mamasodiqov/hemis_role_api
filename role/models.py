@@ -11,6 +11,7 @@ class Role(models.Model):
     key = models.CharField(max_length=100)
     label = models.CharField(max_length=100)
 
+
     def __str__(self):
         return self.title
 
@@ -21,11 +22,14 @@ class Nav(models.Model):
     label = models.CharField(max_length=100)
     icon = models.CharField(max_length=200)
     role = models.ForeignKey(Role, related_name='navs', on_delete=models.CASCADE)
-
+    ordering = models.IntegerField(default=0)
     def save(self, *args, **kwargs):
         if not self.key:
             self.key = self.label
         super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['ordering']
 
     def __str__(self):
         return self.label
@@ -39,11 +43,14 @@ class Child(models.Model):
     role = models.ForeignKey(Role, related_name='nav_child', on_delete=models.CASCADE)
     nav = models.ForeignKey(Nav, related_name='children', on_delete=models.CASCADE)
     content = models.TextField()
-
+    ordering = models.IntegerField(default=0)
     def save(self, *args, **kwargs):
         if not self.key:
             self.key = self.label
         super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['ordering']
 
     def __str__(self):
         return self.label
